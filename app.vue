@@ -11,7 +11,6 @@ body {
   padding: 0;
   background-color: #000000;
   color: #ffffff;
-  font-family: "VioletSans-Regular", Arial, sans-serif;
 }
 
 .app-container {
