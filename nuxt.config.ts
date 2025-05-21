@@ -15,17 +15,13 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: "icon", type: "image/x-icon", href: "/icon.png" },
-        {
-          rel: "preload",
-          href: "/fonts/VioletSans-Regular.ttf",
-          as: "font",
-          type: "font/ttf",
-          crossorigin: "anonymous",
-        },
       ],
     },
     baseURL: process.env.NUXT_APP_BASE_URL || "/",
   },
   css: ["~/assets/css/main.css"],
-  modules: ["@nuxt/eslint", "@nuxt/fonts", "@nuxt/icon", "@nuxt/image"],
+  modules: ["@nuxt/eslint", "@nuxt/icon", "@nuxt/image"],
+  nitro: {
+    preset: 'github-pages'
+  },
 });
