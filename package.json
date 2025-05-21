@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "deploy": "NUXT_APP_BASE_URL=/kartel/ nuxt generate && npx gh-pages --dotfiles -d .output/public"
   },
   "dependencies": {
     "@nuxt/eslint": "^1.4.1",

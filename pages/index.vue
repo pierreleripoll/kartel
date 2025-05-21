@@ -64,70 +64,56 @@
           <a href="https://www.visarte-valais.ch/" target="_blank"
             >Visarte Valais</a
           >
-          •
           <a href="https://www.musees-vs.ch/" target="_blank"
             >Association Valaisanne des Musées (AVM)</a
           >
-          •
           <a href="https://theatres-vs.ch/a-propos/" target="_blank"
             >Les Théâtre de création valaisans</a
           >
-          •
           <a href="https://www.avpsh.ch/" target="_blank"
             >Association valaisanne des professionnels des sciences humaines
             (AVPSH)</a
           >
-          •
           <a href="https://m.facebook.com/tanznetzwerk.vs" target="_blank"
             >Tanznetzwerk VS</a
           >
-          •
-          <a href="http://www.valaisfilms.ch" target="_blank">Valais Films</a> •
-          <a href="https://musikvalais.ch" target="_blank">MusikValais</a> •
+          <a href="http://www.valaisfilms.ch" target="_blank">Valais Film</a>
+          <a href="https://musikvalais.ch" target="_blank">MusikValai</a>
           <a href="https://www.bibliovalais.ch" target="_blank"
             >BiblioValais Wallis</a
           >
-          •
           <a href="https://new.lasev.ch" target="_blank"
             >Société des Ecrivain.e.s Valaisan.ne.s</a
           >
-          •
           <a href="https://www.forcesvives-vs.ch" target="_blank"
             >FORCES VIVES, Faîtière des arts vivants Valais</a
           >
         </div>
-        <div class="marquee-content" aria-hidden="true">
+        <div class="marquee-content">
           <a href="https://www.visarte-valais.ch/" target="_blank"
             >Visarte Valais</a
           >
-          •
           <a href="https://www.musees-vs.ch/" target="_blank"
             >Association Valaisanne des Musées (AVM)</a
           >
-          •
           <a href="https://theatres-vs.ch/a-propos/" target="_blank"
             >Les Théâtre de création valaisans</a
           >
-          •
           <a href="https://www.avpsh.ch/" target="_blank"
             >Association valaisanne des professionnels des sciences humaines
             (AVPSH)</a
           >
-          •
           <a href="https://m.facebook.com/tanznetzwerk.vs" target="_blank"
             >Tanznetzwerk VS</a
           >
-          •
-          <a href="http://www.valaisfilms.ch" target="_blank">Valais Films</a> •
-          <a href="https://musikvalais.ch" target="_blank">MusikValais</a> •
+          <a href="http://www.valaisfilms.ch" target="_blank">Valais Film</a>
+          <a href="https://musikvalais.ch" target="_blank">MusikValai</a>
           <a href="https://www.bibliovalais.ch" target="_blank"
             >BiblioValais Wallis</a
           >
-          •
           <a href="https://new.lasev.ch" target="_blank"
             >Société des Ecrivain.e.s Valaisan.ne.s</a
           >
-          •
           <a href="https://www.forcesvives-vs.ch" target="_blank"
             >FORCES VIVES, Faîtière des arts vivants Valais</a
           >
@@ -189,12 +175,15 @@
 
 .marquee-content {
   display: flex;
-  animation: marquee 30s linear infinite;
+  animation: marquee 90s linear infinite;
   padding-right: 50px;
 }
 
 .marquee-content a {
   margin: 0 10px;
+  text-underline-offset: 2px;
+  font-weight: 400;
+  text-decoration: underline;
 }
 
 @keyframes marquee {
