@@ -36,7 +36,7 @@ jobs:
         run: npm ci
 
       - name: Generate static site
-        run: npm run generate
+        run: NUXT_APP_BASE_URL=/kartel/ npm run generate
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

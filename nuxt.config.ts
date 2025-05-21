@@ -15,7 +15,7 @@ export default defineNuxtConfig({
       ],
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
-    baseURL: "/kartel/",
+    baseURL: "/",
   },
   css: ["~/assets/css/main.css"],
   modules: ["@nuxt/eslint", "@nuxt/fonts", "@nuxt/icon", "@nuxt/image"],
