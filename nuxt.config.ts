@@ -13,13 +13,28 @@ export default defineNuxtConfig({
           content: "collectif informel · informelles Kollektiv",
         },
       ],
-      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        {
+          rel: "preload",
+          href: "/fonts/VioletSans-Regular.ttf",
+          as: "font",
+          type: "font/ttf",
+          crossorigin: "anonymous",
+        },
+      ],
     },
     baseURL: process.env.NUXT_APP_BASE_URL || "/",
   },
   css: ["~/assets/css/main.css"],
   modules: ["@nuxt/eslint", "@nuxt/fonts", "@nuxt/icon", "@nuxt/image"],
   fonts: {
-    families: [{ name: "VioletSans-Regular", provider: "local" }],
+    families: [
+      {
+        name: "VioletSans-Regular",
+        provider: "local",
+        src: "/fonts/VioletSans-Regular.ttf",
+      },
+    ],
   },
 });

@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "VioletSans-Regular";
+  src: url("/fonts/VioletSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 html,
 body {
   font-family: "VioletSans-Regular", Arial, sans-serif;
