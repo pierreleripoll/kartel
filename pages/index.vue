@@ -6,6 +6,11 @@
       </a>
     </div>
 
+    <div class="nav-links">
+      <NuxtLink to="/" class="active">Accueil / Startseite</NuxtLink>
+      <NuxtLink to="/tandem">Tandem</NuxtLink>
+    </div>
+
     <hr class="divider" />
 
     <div class="content-grid">
@@ -143,6 +148,23 @@
 .logo {
   width: 30rem;
   height: auto;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 20px;
+}
+
+.nav-links a {
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+.nav-links a.active {
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .divider {
