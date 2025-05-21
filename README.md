@@ -1,23 +1,14 @@
-# Nuxt Minimal Starter
+# Kartel Website
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A Nuxt 3 recreation of the Kartel WordPress site. This site is for a cultural collective based in Switzerland.
 
 ## Setup
 
-Make sure to install dependencies:
+Make sure to install the dependencies:
 
 ```bash
 # npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
 ## Development Server
@@ -27,15 +18,6 @@ Start the development server on `http://localhost:3000`:
 ```bash
 # npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
 ## Production
@@ -45,31 +27,33 @@ Build the application for production:
 ```bash
 # npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+Generate static pages for GitHub Pages deployment:
+
+```bash
+# npm
+npm run generate
+```
+
+Preview the production build locally:
 
 ```bash
 # npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Deployment
+
+This site is configured to be deployed on GitHub Pages. Push to the main branch and the GitHub Actions workflow will handle the deployment automatically.
+
+## Structure
+
+- `app.vue`: Main application template
+- `pages/index.vue`: Home page with content
+- `assets/`: Contains CSS, fonts, and image files
+- `public/`: Public files like favicon
+
+## Font Attribution
+
+The site uses VioletSans-Regular font from the original WordPress site.
