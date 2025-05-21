@@ -141,13 +141,13 @@
 }
 
 .logo {
-  width: 200px;
+  width: 30rem;
   height: auto;
 }
 
 .divider {
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 1);
   margin: 30px 0;
 }
 
@@ -181,9 +181,16 @@
 
 .marquee-content a {
   margin: 0 10px;
-  text-underline-offset: 2px;
-  font-weight: 400;
-  text-decoration: underline;
+}
+
+/* Pause animation on hover */
+.marquee-content a:hover {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+
+.marquee:hover .marquee-content {
+  animation-play-state: paused;
 }
 
 @keyframes marquee {
@@ -203,7 +210,7 @@
   }
 
   .logo {
-    width: 150px;
+    width: 10rem;
   }
 }
 </style>

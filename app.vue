@@ -20,10 +20,12 @@ body {
 
 a {
   color: #ffffff;
-  text-decoration: none;
+  text-underline-offset: 2px;
+  font-weight: 400;
+  text-decoration: underline;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: #ffced9;
 }
 </style>
