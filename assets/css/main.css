@@ -1,6 +1,7 @@
 @font-face {
   font-family: "VioletSans-Regular";
-  src: url("~/assets/fonts/VioletSans-Regular.ttf") format("truetype");
+  src: url("~/assets/fonts/VioletSans-Regular.woff") format("woff"),
+    url("~/assets/fonts/VioletSans-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
