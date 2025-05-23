@@ -525,6 +525,10 @@ const selectedLanguage = ref(null);
     grid-template-columns: 1fr;
     gap: 20px;
   }
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 
   .language-selection {
     flex-direction: column;
