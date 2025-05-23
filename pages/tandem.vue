@@ -66,7 +66,7 @@
     <div v-if="selectedLanguage" class="detailed-content">
       <!-- French content -->
       <div v-if="selectedLanguage === 'french'" class="content-column">
-        <div class="intro-grid">
+        <div class="content-grid">
           <div class="video-container">
             <iframe
               width="560"
@@ -120,7 +120,7 @@
           </div>
         </div>
 
-        <div class="intro-grid">
+        <div class="content-grid">
           <div class="video-container">
             <iframe
               width="560"
@@ -157,7 +157,7 @@
           </div>
         </div>
 
-        <div class="intro-grid">
+        <div class="content-grid">
           <div class="video-container">
             <iframe
               width="560"
@@ -239,7 +239,7 @@
 
       <!-- German content -->
       <div v-else-if="selectedLanguage === 'german'" class="content-column">
-        <div class="intro-grid">
+        <div class="content-grid">
           <div class="video-container">
             <iframe
               width="560"
@@ -293,7 +293,7 @@
           </div>
         </div>
 
-        <div class="intro-grid">
+        <div class="content-grid">
           <div class="video-container">
             <iframe
               width="560"
@@ -330,7 +330,7 @@
           </div>
         </div>
 
-        <div class="intro-grid">
+        <div class="content-grid">
           <div class="video-container">
             <iframe
               width="560"
@@ -432,6 +432,14 @@ const selectedLanguage = ref(null);
   margin-bottom: 30px;
 }
 
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
 .intro-column p {
   line-height: 1.6;
   margin-bottom: 20px;
@@ -480,6 +488,7 @@ const selectedLanguage = ref(null);
 }
 
 .video-container {
+  order: 2;
   position: relative;
   width: 100%;
   padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
