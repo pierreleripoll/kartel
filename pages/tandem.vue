@@ -493,6 +493,7 @@ const selectedLanguage = ref(null);
   width: 100%;
   padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
   margin: 30px 0;
+  height: 315px;
 }
 
 .video-container iframe {
