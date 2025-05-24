@@ -46,7 +46,7 @@
           <a href="https://www.bibliovalais.ch" target="_blank"
             >BiblioValais Wallis</a
           >
-          <a href="https://new.lasev.ch" target="_blank"
+          <a href="https://lasev.ch" target="_blank"
             >Société des Ecrivain.e.s Valaisan.ne.s</a
           >
           <a href="https://www.forcesvives-vs.ch" target="_blank"
@@ -75,7 +75,7 @@
           <a href="https://www.bibliovalais.ch" target="_blank"
             >BiblioValais Wallis</a
           >
-          <a href="https://new.lasev.ch" target="_blank"
+          <a href="https://lasev.ch" target="_blank"
             >Société des Ecrivain.e.s Valaisan.ne.s</a
           >
           <a href="https://www.forcesvives-vs.ch" target="_blank"
