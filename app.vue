@@ -11,6 +11,7 @@ body {
   padding: 0;
   background-color: #000000;
   color: #ffffff;
+  font-size: large;
   font-family: "Violet Sans", sans-serif;
 }
 
