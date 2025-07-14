@@ -7,8 +7,8 @@
         <p>
           Face aux défis actuels, le Service de la culture de l'Etat du Valais,
           la Conférence valaisanne des Responsables aux Affaires culturelles
-          (CRAC) et Kartel ont entamé réflexion globale sur la durabilité dans
-          les domaines culturels.
+          (CRAC) et Kartel ont entamé une réflexion globale sur la durabilité
+          dans les domaines culturels.
         </p>
         <p>
           En résulte un
