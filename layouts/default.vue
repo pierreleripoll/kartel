@@ -59,6 +59,7 @@ h3 {
 
 .nav-links {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin: 20px 0;
   gap: 20px;
