@@ -12,7 +12,7 @@
         </p>
         <p>
           En résulte un
-          <a href="/2025_Durabilite dans les milieux culturels.pdf" download
+          <a href="/2025_Durabilite_dans_les_milieux_culturels.pdf" download
             >rapport</a
           >
           qui regroupe des pistes d'amélioration, ainsi qu'une liste d'actions
@@ -29,7 +29,7 @@
         </p>
         <p>
           Das Ergebnis ist ein
-          <a href="/Bericht 'Nachhaltigkeit' zum Herunterladen.pdf" download
+          <a href="/Bericht_Nachhaltigkeit_zum_Herunterladen.pdf" download
             >Bericht</a
           >, der Verbesserungsmöglichkeiten sowie eine Liste von
           Positivbeispielen auf lokaler, kantonaler und nationaler Ebene
@@ -73,7 +73,7 @@
             sa pertinence. Parmi ces défis complexes, figurent les questions
             environnementales, sociales et économiques croissantes. Le groupe de
             travail s'est fixé comme objectif d'éditer un
-            <a href="/2025_Durabilite dans les milieux culturels.pdf" download
+            <a href="/2025_Durabilite_dans_les_milieux_culturels.pdf" download
               >rapport</a
             >
             avec des solutions concrètes aux enjeux de durabilité pour
@@ -85,7 +85,7 @@
           <h3>Une boîte à outils</h3>
           <p>
             Le
-            <a href="/2025_Durabilite dans les milieux culturels.pdf" download
+            <a href="/2025_Durabilite_dans_les_milieux_culturels.pdf" download
               >rapport</a
             >
             du groupe de travail peut être utilisé comme une boite à outils dans
@@ -97,7 +97,7 @@
             sur les démarches en cours dans d'autres branches économiques. De
             plus, il amène des réflexions qui s'efforcent d'être innovantes pour
             affirmer son rôle inspirant au sein de la société. Le
-            <a href="/2025_Durabilite dans les milieux culturels.pdf" download
+            <a href="/2025_Durabilite_dans_les_milieux_culturels.pdf" download
               >rapport</a
             >
             s'inscrit dans le sillage des efforts collectifs déjà en œuvre tels
@@ -109,7 +109,7 @@
           <h3>Cinq objectifs</h3>
           <p>
             Le
-            <a href="/2025_Durabilite dans les milieux culturels.pdf" download
+            <a href="/2025_Durabilite_dans_les_milieux_culturels.pdf" download
               >rapport</a
             >
             se basant sur cinq objectifs, à savoir :
@@ -136,7 +136,7 @@
           <h3>Neuf secteurs de développement</h3>
           <p>
             Le
-            <a href="/2025_Durabilite dans les milieux culturels.pdf" download
+            <a href="/2025_Durabilite_dans_les_milieux_culturels.pdf" download
               >rapport</a
             >, en se basant sur ces objectifs, analyse les actions de changement
             à travers neuf secteurs de développement qui sont :
@@ -158,7 +158,7 @@
           <h3>Trois temporalités</h3>
           <p>
             Le
-            <a href="/2025_Durabilite dans les milieux culturels.pdf" download
+            <a href="/2025_Durabilite_dans_les_milieux_culturels.pdf" download
               >rapport</a
             >
             se construit d'après trois temporalités d'engagement :
@@ -437,7 +437,7 @@
             Nachhaltigkeit in Frage stellen. Dazu gehören zunehmend auch Fragen
             ökologischer, sozialer und ökonomischer Nachhaltigkeit. Die
             Arbeitsgruppe hat sich zum Ziel gesetzt, einen
-            <a href="/Bericht 'Nachhaltigkeit' zum Herunterladen.pdf" download
+            <a href="/Bericht_Nachhaltigkeit_zum_Herunterladen.pdf" download
               >Bericht</a
             >
             mit konkreten Lösungen für Herausforderungen im Zusammenhang mit der
@@ -451,7 +451,7 @@
             Dieser Werkzeugkasten soll Kulturschaffenden, die privat,
             öffentlich, unabhängig oder in Kulturinstitutionen tätig sind,
             Inspiration für neue Lösungswege bieten. Der
-            <a href="/Bericht 'Nachhaltigkeit' zum Herunterladen.pdf" download
+            <a href="/Bericht_Nachhaltigkeit_zum_Herunterladen.pdf" download
               >Bericht</a
             >
             stellt einen Ausgangspunkt und keineswegs eine vollständige
@@ -459,12 +459,12 @@
             Massnahmen vorschlagen, um das Kulturschaffen an die
             Nachhaltigkeitsansätze in anderen Wirtschaftszweigen anzunähern.
             Darüber hinaus bringt der
-            <a href="/Bericht 'Nachhaltigkeit' zum Herunterladen.pdf" download
+            <a href="/Bericht_Nachhaltigkeit_zum_Herunterladen.pdf" download
               >Bericht</a
             >
             innovative Überlegungen ein, welche als Inspiration dienen sollen.
             Der
-            <a href="/Bericht 'Nachhaltigkeit' zum Herunterladen.pdf" download
+            <a href="/Bericht_Nachhaltigkeit_zum_Herunterladen.pdf" download
               >Bericht</a
             >
             knüpft an bereits laufende gesellschaftliche Reflexionen an, wie die
@@ -476,7 +476,7 @@
           <h3>5 Ziele</h3>
           <p>
             Der
-            <a href="/Bericht 'Nachhaltigkeit' zum Herunterladen.pdf" download
+            <a href="/Bericht_Nachhaltigkeit_zum_Herunterladen.pdf" download
               >Bericht</a
             >
             basiert auf 5 Zielen:
@@ -502,7 +502,7 @@
           <h3>9 Entwicklungsbereiche</h3>
           <p>
             Ausgehend von diesen Zielen analysiert der
-            <a href="/Bericht 'Nachhaltigkeit' zum Herunterladen.pdf" download
+            <a href="/Bericht_Nachhaltigkeit_zum_Herunterladen.pdf" download
               >Bericht</a
             >
             Veränderungsmassnahmen in 9 Entwicklungsbereichen:
@@ -524,7 +524,7 @@
           <h3>3 Handlungsebenen</h3>
           <p>
             Der
-            <a href="/Bericht 'Nachhaltigkeit' zum Herunterladen.pdf" download
+            <a href="/Bericht_Nachhaltigkeit_zum_Herunterladen.pdf" download
               >Bericht</a
             >
             baut auf 3 Handlungsebenen:
@@ -551,7 +551,7 @@
           <h3>Weitere Quellen</h3>
           <p>
             Mit diesem
-            <a href="/Bericht 'Nachhaltigkeit' zum Herunterladen.pdf" download
+            <a href="/Bericht_Nachhaltigkeit_zum_Herunterladen.pdf" download
               >Bericht</a
             >
             hast du eine nützliche und umfassende Grundlage zur Förderung der
