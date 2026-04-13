@@ -7,17 +7,20 @@ const lang = computed(() => {
   return route.path.startsWith("/de") ? "de" : "fr";
 });
 
-const otherLang = computed(() => (lang.value === "fr" ? "de" : "fr"));
+const pageSuffix = computed(() => {
+  return route.path.replace(/^\/(fr|de)/, "");
+});
 
-const switchLangPath = computed(() => {
-  const path = route.path;
-  if (lang.value === "fr") {
-    if (path === "/fr/durabilite") return "/de/nachhaltigkeit";
-    return path.replace(/^\/fr/, "/de");
-  } else {
-    if (path === "/de/nachhaltigkeit") return "/fr/durabilite";
-    return path.replace(/^\/de/, "/fr");
-  }
+const frSuffix = computed(() => {
+  return pageSuffix.value === "/nachhaltigkeit"
+    ? "/durabilite"
+    : pageSuffix.value;
+});
+
+const deSuffix = computed(() => {
+  return pageSuffix.value === "/durabilite"
+    ? "/nachhaltigkeit"
+    : pageSuffix.value;
 });
 </script>
 
@@ -29,33 +32,39 @@ const switchLangPath = computed(() => {
       </a>
     </div>
 
-    <div class="nav-links">
-      <NuxtLink
-        :to="`/${lang}`"
-        :class="{ active: route.path === `/${lang}` }"
-      >
-        {{ lang === "fr" ? "Accueil" : "Startseite" }}
-      </NuxtLink>
-      <NuxtLink
-        :to="`/${lang}/tandem`"
-        :class="{ active: route.path === `/${lang}/tandem` }"
-      >
-        Tandem
-      </NuxtLink>
-      <NuxtLink
-        :to="lang === 'fr' ? '/fr/durabilite' : '/de/nachhaltigkeit'"
-        :class="{
-          active:
-            route.path === '/fr/durabilite' ||
-            route.path === '/de/nachhaltigkeit',
-        }"
-      >
-        {{ lang === "fr" ? "Durabilité" : "Nachhaltigkeit" }}
-      </NuxtLink>
+    <div class="nav-wrapper">
+      <div class="lang-selector">
+        <NuxtLink :to="`/fr${frSuffix}`" :class="{ active: lang === 'fr' }">
+          Français </NuxtLink
+        >/<NuxtLink :to="`/de${deSuffix}`" :class="{ active: lang === 'de' }">
+          Deutsch
+        </NuxtLink>
+      </div>
 
-      <NuxtLink :to="switchLangPath" class="lang-switch">
-        {{ otherLang.toUpperCase() }}
-      </NuxtLink>
+      <div class="nav-links">
+        <NuxtLink
+          :to="`/${lang}`"
+          :class="{ active: route.path === `/${lang}` }"
+        >
+          {{ lang === "fr" ? "Accueil" : "Startseite" }}
+        </NuxtLink>
+        <NuxtLink
+          :to="`/${lang}/tandem`"
+          :class="{ active: route.path === `/${lang}/tandem` }"
+        >
+          Tandem
+        </NuxtLink>
+        <NuxtLink
+          :to="lang === 'fr' ? '/fr/durabilite' : '/de/nachhaltigkeit'"
+          :class="{
+            active:
+              route.path === '/fr/durabilite' ||
+              route.path === '/de/nachhaltigkeit',
+          }"
+        >
+          {{ lang === "fr" ? "Durabilité" : "Nachhaltigkeit" }}
+        </NuxtLink>
+      </div>
     </div>
 
     <hr class="divider" />
@@ -71,7 +80,7 @@ const switchLangPath = computed(() => {
 
 <style>
 .kartel-container {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -95,8 +104,9 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 20px 0;
+  margin: 0 0;
   gap: 20px;
+  order: 2;
 }
 
 .nav-links a {
@@ -109,16 +119,25 @@ h3 {
   text-decoration: underline;
 }
 
-.nav-links .lang-switch {
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 4px;
-  padding: 5px 12px;
-  font-size: 0.85em;
-  letter-spacing: 0.05em;
+.nav-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
-.nav-links .lang-switch:hover {
-  border-color: white;
+.lang-selector {
+  text-align: right;
+  margin-bottom: 5px;
+  font-size: 0.85em;
+  order: 1;
+}
+
+.lang-selector a {
+  padding: 0 2px;
+  text-decoration: none;
+}
+
+.lang-selector a.active {
+  text-decoration: underline;
 }
 
 .divider {
@@ -217,20 +236,18 @@ h3 {
     gap: 20px;
   }
 
-  .language-selection {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .language-link {
-    width: 150px;
-  }
-}
-
-/* Mobile layout */
-@media (max-width: 768px) {
   .logo {
     width: 10rem;
+  }
+
+  .logo-container {
+    margin: 2rem 0;
+    margin-bottom: 1rem;
+  }
+  .lang-selector {
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 0px;
   }
 }
 </style>

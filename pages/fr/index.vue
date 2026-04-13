@@ -51,10 +51,6 @@ definePageMeta({
 </script>
 
 <style scoped>
-.content-column {
-  max-width: 700px;
-}
-
 .content-column p {
   line-height: 1.6;
   margin-bottom: 20px;
