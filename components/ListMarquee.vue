@@ -36,6 +36,9 @@
         <a href="https://www.forcesvives-vs.ch/" target="_blank"
           >FORCES VIVES, Faîtière des arts vivants Valais</a
         >
+        <a href="https://www.visarte-wallis.ch" target="_blank"
+          >Visarte Wallis</a
+        >
       </div>
 
       <!-- Duplicate set for seamless loop -->
@@ -66,6 +69,9 @@
         >
         <a href="https://www.forcesvives-vs.ch/" target="_blank"
           >FORCES VIVES, Faîtière des arts vivants Valais</a
+        >
+        <a href="https://www.visarte-wallis.ch" target="_blank"
+          >Visarte Wallis</a
         >
       </div>
     </div>
