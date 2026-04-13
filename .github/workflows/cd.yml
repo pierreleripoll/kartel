@@ -1,8 +1,13 @@
-name: Deploy Nuxt site to GitHub Pages
+# DEPRECATED: This workflow is no longer used.
+# Deployment is now handled by Cloudflare Pages (auto-deploys on push).
+# Kept for reference only — do not enable.
+
+name: "[DEPRECATED] Deploy Nuxt site to GitHub Pages"
 
 on:
-  push:
-    branches: ["main"]
+  # Disabled — uncomment to re-enable
+  # push:
+  #   branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -24,7 +29,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Setup Pages
