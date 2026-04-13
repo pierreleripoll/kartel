@@ -1,5 +1,24 @@
 <script setup lang="ts">
 import ListMarquee from "~/components/ListMarquee.vue";
+
+const route = useRoute();
+
+const lang = computed(() => {
+  return route.path.startsWith("/de") ? "de" : "fr";
+});
+
+const otherLang = computed(() => (lang.value === "fr" ? "de" : "fr"));
+
+const switchLangPath = computed(() => {
+  const path = route.path;
+  if (lang.value === "fr") {
+    if (path === "/fr/durabilite") return "/de/nachhaltigkeit";
+    return path.replace(/^\/fr/, "/de");
+  } else {
+    if (path === "/de/nachhaltigkeit") return "/fr/durabilite";
+    return path.replace(/^\/de/, "/fr");
+  }
+});
 </script>
 
 <template>
@@ -11,17 +30,32 @@ import ListMarquee from "~/components/ListMarquee.vue";
     </div>
 
     <div class="nav-links">
-      <NuxtLink to="/" :class="{ active: $route.path === '/' }"
-        >Accueil / Startseite</NuxtLink
-      >
-      <NuxtLink to="/tandem" :class="{ active: $route.path === '/tandem' }"
-        >Tandem</NuxtLink
-      >
       <NuxtLink
-        to="/durabilite"
-        :class="{ active: $route.path === '/durabilite' }"
-        >Durabilité / Nachhaltigkeit</NuxtLink
+        :to="`/${lang}`"
+        :class="{ active: route.path === `/${lang}` }"
       >
+        {{ lang === "fr" ? "Accueil" : "Startseite" }}
+      </NuxtLink>
+      <NuxtLink
+        :to="`/${lang}/tandem`"
+        :class="{ active: route.path === `/${lang}/tandem` }"
+      >
+        Tandem
+      </NuxtLink>
+      <NuxtLink
+        :to="lang === 'fr' ? '/fr/durabilite' : '/de/nachhaltigkeit'"
+        :class="{
+          active:
+            route.path === '/fr/durabilite' ||
+            route.path === '/de/nachhaltigkeit',
+        }"
+      >
+        {{ lang === "fr" ? "Durabilité" : "Nachhaltigkeit" }}
+      </NuxtLink>
+
+      <NuxtLink :to="switchLangPath" class="lang-switch">
+        {{ otherLang.toUpperCase() }}
+      </NuxtLink>
     </div>
 
     <hr class="divider" />
@@ -75,6 +109,18 @@ h3 {
   text-decoration: underline;
 }
 
+.nav-links .lang-switch {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  padding: 5px 12px;
+  font-size: 0.85em;
+  letter-spacing: 0.05em;
+}
+
+.nav-links .lang-switch:hover {
+  border-color: white;
+}
+
 .divider {
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 1);
@@ -99,12 +145,6 @@ h3 {
 .intro-column p {
   line-height: 1.4;
   margin-bottom: 20px;
-}
-
-.divider {
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 1);
-  margin: 30px 0;
 }
 
 .language-selection {
