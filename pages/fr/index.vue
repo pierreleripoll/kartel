@@ -49,16 +49,3 @@ definePageMeta({
   layout: "default",
 });
 </script>
-
-<style scoped>
-.content-column p {
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.content-column ul {
-  line-height: 1.6;
-  margin-bottom: 20px;
-  padding-left: 20px;
-}
-</style>

@@ -9,11 +9,8 @@
 
 html,
 body {
-  font-family: "VioletSans-Regular", Arial, sans-serif;
   height: 100%;
   width: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 * {

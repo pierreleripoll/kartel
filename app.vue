@@ -13,6 +13,7 @@ body {
   color: #ffffff;
   font-size: large;
   font-family: "Violet Sans", sans-serif;
+  line-height: 1.4;
 }
 
 .app-container {

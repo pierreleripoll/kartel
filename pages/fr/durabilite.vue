@@ -386,10 +386,3 @@ definePageMeta({
   layout: "default",
 });
 </script>
-
-<style scoped>
-.contact-item {
-  padding: 1.2rem 0px;
-  line-height: 1.4;
-}
-</style>
