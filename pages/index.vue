@@ -3,9 +3,10 @@
     <div class="content-grid">
       <div class="content-column french">
         <p>
-          Kartel est un collectif qui regroupe les associations professionnelles
-          artistiques, patrimoniales et scientifiques du domaine de la culture du
-          Canton du Valais. Il défend les intérêts généraux des milieux culturels
+          <a href="mailto:info@kartel.ch" target="_blank">Kartel</a> est un
+          collectif qui regroupe les associations professionnelles artistiques,
+          patrimoniales et scientifiques du domaine de la culture du Canton du
+          Valais. Il défend les intérêts généraux des milieux culturels
           valaisans.
         </p>
         <p>
@@ -52,7 +53,8 @@
         </p>
         <p>
           Obwohl jeder Bereich seine Besonderheiten hat, entsteht durch den
-          Zusammenschluss der Berufsverbände eine einheitliche und starke Stimme.
+          Zusammenschluss der Berufsverbände eine einheitliche und starke
+          Stimme.
         </p>
         <p>
           Verbände, die Mitglied von Kartel sind, bündeln ihr Wissen, ihre
@@ -69,9 +71,7 @@
             Bessere Arbeitsbedingungen und mehr Anerkennung für die Berufe im
             Kulturbereich
           </li>
-          <li>
-            Entwicklung gemeinsamer Strategien, Maßnahmen und Synergien
-          </li>
+          <li>Entwicklung gemeinsamer Strategien, Maßnahmen und Synergien</li>
           <li>
             Kreation einer Plattform für Informationen, Datenerfassung und
             -analyse
