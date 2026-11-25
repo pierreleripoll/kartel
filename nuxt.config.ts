@@ -2,6 +2,10 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
+  devServer: {
+    // Each wtx worktree has its port in FRONTEND_PORT. The main checkout keeps 3000.
+    port: Number(process.env.FRONTEND_PORT) || 3000,
+  },
   app: {
     head: {
       title: "Kartel",
