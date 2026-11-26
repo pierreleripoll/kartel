@@ -1,12 +1,12 @@
 <template>
   <div
+    ref="scrollContainer"
     class="marquee-container"
     @mouseenter="pauseAnimation"
     @mouseleave="resumeAnimationOnLeave"
     @mousedown="startDrag"
-    ref="scrollContainer"
   >
-    <div class="marquee-content" ref="marqueeContent">
+    <div ref="marqueeContent" class="marquee-content">
       <!-- First set of links -->
       <div class="marquee-item-group">
         <a href="https://www.visarte-valais.ch/" target="_blank"
@@ -16,7 +16,7 @@
           >Association Valaisanne des Musées (AVM)</a
         >
         <a href="https://theatres-vs.ch/" target="_blank"
-          >Les Théâtre de création valaisans</a
+          >Les Théâtres de création valaisans</a
         >
         <a href="https://www.avpsh.ch/" target="_blank"
           >Association valaisanne des professionnels des sciences humaines
@@ -50,7 +50,7 @@
           >Association Valaisanne des Musées (AVM)</a
         >
         <a href="https://theatres-vs.ch/" target="_blank"
-          >Les Théâtre de création valaisans</a
+          >Les Théâtres de création valaisans</a
         >
         <a href="https://www.avpsh.ch/" target="_blank"
           >Association valaisanne des professionnels des sciences humaines
