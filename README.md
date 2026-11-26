@@ -46,9 +46,13 @@ content/
     index.md  tandem.md  durabilite.md
     actualites/<slug>.md
   de/
-    index.md  tandem.md  nachhaltigkeit.md
-    aktuelles/<slug>.md
+    index.md  tandem.md  durabilite.md
+    actualites/<slug>.md
 ```
+
+The files have the same name in the two languages, the French one. The CMS
+needs this to show the two languages of a page in one entry. The German URLs
+keep their German words: `/de/nachhaltigkeit` reads `content/de/durabilite.md`.
 
 The fields of each file are in `content.schemas.ts`. The build fails when a
 file has a bad field.
@@ -78,9 +82,8 @@ A news item has a `title`, a `date`, a short `description`, a photo and the
 text. The photo has a `src`, an `alt`, a `caption` and a `credit`. The credit
 shows under the photo.
 
-A news item is written in one language and only shows on the site of this
-language. To have it in the two languages, write it in the two folders with the
-same file name. When a language has no news, its menu has no news link.
+A news item is written in the two languages, in two files with the same name.
+An item with no German file does not show on the German side.
 
 ## The CMS
 
@@ -88,8 +91,9 @@ Benjamin logs in at `/admin` with his GitHub account. He needs the Write role
 on this repo. Each save is a commit on `main`, and the site is online 2 to 3
 minutes later.
 
-- `public/admin/config.yml`: the collections and the fields (news and pages,
-  one time per language). Keep the fields the same as `content.schemas.ts`.
+- `public/admin/config.yml`: the collections and the fields (news and pages).
+  One entry has the French text and the German text side by side. Keep the
+  fields the same as `content.schemas.ts`.
 - `public/admin/site.js`: the "Vidéo YouTube" button of the text editor.
 - `public/admin/aide.html`: the help page of the CMS, in French.
 

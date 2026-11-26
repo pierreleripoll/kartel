@@ -5,10 +5,10 @@
 export async function useSiteNav() {
   const route = useRoute()
 
-  // The paths of all the news of the two languages. Benjamin posts about 4 a
+  // The URLs of all the news of the two languages. Benjamin posts about 4 a
   // year, so one small query is enough.
-  const { data: newsPaths } = await useAsyncData('news-paths', () =>
-    queryCollection('news').select('path').all().then(rows => rows.map(row => row.path)),
+  const { data: newsPaths } = await useAsyncData('news-urls', () =>
+    queryCollection('news').select('path').all().then(rows => rows.map(row => urlOfContent(row.path))),
   )
 
   const lang = computed(() => langOf(route.path))
@@ -18,16 +18,14 @@ export async function useSiteNav() {
     return (newsPaths.value ?? []).some(path => path.startsWith(`${newsPath(of)}/`))
   }
 
-  /** The menu of the language. With no news, the news link is not there. */
+  /** The menu of the language. */
   const links = computed(() =>
-    menu
-      .filter(entry => entry.key !== 'news' || hasNews(lang.value))
-      .map(entry => ({
-        key: entry.key,
-        to: entry[lang.value],
-        label: labels[lang.value][entry.key],
-        active: menuEntryOf(current.value)?.key === entry.key,
-      })),
+    menu.map(entry => ({
+      key: entry.key,
+      to: entry[lang.value],
+      label: labels[lang.value][entry.key],
+      active: menuEntryOf(current.value)?.key === entry.key,
+    })),
   )
 
   /** The same page in each language. `exact` is false when it is not a translation. */

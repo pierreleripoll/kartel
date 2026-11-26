@@ -41,11 +41,12 @@ defineProps<{
   lang: Lang
 }>()
 
+// /de/aktuelles/<slug> is the file content/de/actualites/<slug>.md.
 const route = useRoute()
-const path = cleanPath(route.path)
+const path = contentPathOf(route.path)
 
-const { data: article } = await useAsyncData(`news-${path}`, () =>
-  queryCollection('news').path(path).first(),
+const { data: article } = await useAsyncData(`news-${path}`, async () =>
+  path ? await queryCollection('news').path(path).first() : null,
 )
 if (!article.value) throw createError({ statusCode: 404, message: 'Page not found', fatal: true })
 

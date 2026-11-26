@@ -6,7 +6,11 @@ export type Lang = typeof langs[number]
 
 export const defaultLang: Lang = 'fr'
 
-/** The pages of the menu, in order, with their URL in each language. */
+/**
+ * The pages of the menu, in order, with their URL in each language.
+ * The content files have the French name in the two languages:
+ * /de/nachhaltigkeit is content/de/durabilite.md.
+ */
 export const menu = [
   { key: 'home', fr: '/fr', de: '/de' },
   { key: 'tandem', fr: '/fr/tandem', de: '/de/tandem' },
@@ -38,7 +42,7 @@ export const labels = {
     tandem: 'Tandem',
     durabilite: 'Nachhaltigkeit',
     news: 'Aktuelles',
-    newsEmpty: 'Noch keine Beiträge auf Deutsch.',
+    newsEmpty: 'Noch keine Beiträge.',
     back: 'Alle Beiträge',
     notFound: 'Seite nicht gefunden',
     notFoundText: 'Diese Seite gibt es nicht oder nicht mehr.',
@@ -69,6 +73,34 @@ export function menuEntryOf(path: string) {
   const lang = langOf(current)
   return menu.find(entry => entry[lang] === current)
     ?? (current.startsWith(`${newsPath(lang)}/`) ? menu[3] : undefined)
+}
+
+/** "/fr/durabilite" -> "/de/durabilite": where the files of a menu entry are. */
+function contentBase(entry: typeof menu[number], lang: Lang): string {
+  return `/${lang}${entry.fr.slice(`/${defaultLang}`.length)}`
+}
+
+/**
+ * The content path of a URL: "/de/aktuelles/x" -> "/de/actualites/x".
+ * A URL that is not a page of the menu has no content.
+ */
+export function contentPathOf(url: string): string | undefined {
+  const current = cleanPath(url)
+  const lang = langOf(current)
+  const entry = menuEntryOf(current)
+  if (!entry) return undefined
+  return contentBase(entry, lang) + current.slice(entry[lang].length)
+}
+
+/** The URL of a content path: "/de/actualites/x" -> "/de/aktuelles/x". */
+export function urlOfContent(path: string): string {
+  const lang = langOf(path)
+  // From the end: the home entry ("/de") is the start of all the others.
+  const entry = [...menu].reverse().find((item) => {
+    const base = contentBase(item, lang)
+    return path === base || path.startsWith(`${base}/`)
+  })
+  return entry ? entry[lang] + path.slice(contentBase(entry, lang).length) : path
 }
 
 /**
