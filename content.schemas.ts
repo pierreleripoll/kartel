@@ -12,7 +12,7 @@ export const pageSchema = z.object({
   description: z.string().optional(),
 })
 
-/** content/fr/actualites/<slug>.md and content/de/aktuelles/<slug>.md. The body is the article. */
+/** content/fr/actualites/<slug>.md and content/de/actualites/<slug>.md. The body is the article. */
 export const newsSchema = z.object({
   title: z.string().min(1),
   // The day of the article, "2026-11-25". The list shows the last one first.

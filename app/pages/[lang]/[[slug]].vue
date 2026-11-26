@@ -6,13 +6,13 @@
 </template>
 
 <script setup lang="ts">
-// /fr, /fr/tandem, /de/nachhaltigkeit: the page is the Markdown file with the
-// same path in content/. A URL with no file gives a 404.
+// /fr, /fr/tandem, /de/nachhaltigkeit: the page is a Markdown file of
+// content/ (contentPathOf says which one). A URL with no file gives a 404.
 const route = useRoute()
-const path = cleanPath(route.path)
+const path = contentPathOf(route.path)
 
-const { data: page } = await useAsyncData(`page-${path}`, () =>
-  queryCollection('pages').path(path).first(),
+const { data: page } = await useAsyncData(`page-${path}`, async () =>
+  path ? await queryCollection('pages').path(path).first() : null,
 )
 if (!page.value) throw createError({ statusCode: 404, message: 'Page not found', fatal: true })
 

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "nuxt dev",
-    "generate": "nuxt generate && node scripts/check-build.mjs /fr \"/fr/tandem:youtube-lite\" /fr/durabilite /fr/actualites \"/fr/actualites/nuit-du-cirque:Anaël Antille\" /de /de/tandem /de/nachhaltigkeit /de/aktuelles",
+    "generate": "nuxt generate && node scripts/check-build.mjs /fr \"/fr/tandem:youtube-lite\" /fr/durabilite /fr/actualites \"/fr/actualites/nuit-du-cirque:Anaël Antille\" /de /de/tandem /de/nachhaltigkeit /de/aktuelles \"/de/aktuelles/nuit-du-cirque:Anaël Antille\"",
     "preview": "wrangler dev --port ${PREVIEW_PORT:-8787}",
     "lint": "eslint .",
     "typecheck": "nuxt typecheck",

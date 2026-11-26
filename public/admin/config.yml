@@ -38,66 +38,59 @@ media_libraries:
 # Width, height and thumbhash of the images are not fields: the build reads
 # them from the files.
 
-# The site has two languages, each one with its own files:
-# content/fr/ and content/de/. A news item is written in one language. To have
-# it in the two languages, write it one time in each collection.
-
+# The site has two languages. A page or a news item is one entry in the CMS,
+# with the French text and the German text side by side. On disk it is two
+# files with the same name: content/fr/... and content/de/...
+i18n:
+  structure: multiple_folders
+  locales: [fr, de]
+  default_locale: fr
+  # A new entry has the two languages. With this option, the "..." menu of the
+  # editor can turn German off for one entry: the entry is then French only.
+  initial_locales: all
 
 collections:
-  - name: news_fr
-    label: Actualités (français)
+  # The same as newsSchema in content.schemas.ts.
+  - name: news
+    label: Actualités
     label_singular: Actualité
-    folder: content/fr/actualites
+    folder: content/{{locale}}/actualites
     create: true
     slug: '{{slug}}'
     summary: '{{date}} · {{title}}'
     thumbnail: image.src
     sortable_fields: [date, title]
-    # The same as newsSchema in content.schemas.ts. The German news use them too.
-    fields: &news_fields
-      - { name: title, label: Titre, widget: string }
-      - { name: date, label: Date, widget: datetime, format: 'YYYY-MM-DD', time_format: false, picker_utc: false, hint: "Le jour de l'actualité. La plus récente est affichée en premier." }
-      - { name: description, label: Description courte, widget: string, required: false, hint: 'Une phrase, affichée dans la liste des actualités, sur Google et sur les réseaux sociaux.' }
+    i18n: true
+    fields:
+      - { name: title, label: Titre, widget: string, i18n: true }
+      # The date and the photo are the same in the two languages.
+      - { name: date, label: Date, widget: datetime, format: 'YYYY-MM-DD', time_format: false, picker_utc: false, i18n: duplicate, hint: "Le jour de l'actualité. La plus récente est affichée en premier." }
+      - { name: description, label: Description courte, widget: string, required: false, i18n: true, hint: 'Une phrase, affichée dans la liste des actualités, sur Google et sur les réseaux sociaux.' }
       - name: image
         label: Photo
         widget: object
         required: false
         collapsed: false
+        i18n: true
         fields:
-          - { name: src, label: Fichier, widget: image, hint: "Un JPG ou un PNG. La photo est réduite à la bonne taille à l'envoi." }
-          - { name: alt, label: Texte de remplacement, widget: string, required: false, hint: Une phrase qui décrit la photo pour les personnes qui ne la voient pas. }
-          - { name: caption, label: Légende, widget: string, required: false }
-          - { name: credit, label: Crédit, widget: string, required: false, hint: 'Affiché sous la photo. Par exemple : © Anaël Antille' }
-      - { name: body, label: Texte, widget: markdown }
+          - { name: src, label: Fichier, widget: image, i18n: duplicate, hint: "Un JPG ou un PNG. La photo est réduite à la bonne taille à l'envoi." }
+          - { name: alt, label: Texte de remplacement, widget: string, required: false, i18n: true, hint: Une phrase qui décrit la photo pour les personnes qui ne la voient pas. }
+          - { name: caption, label: Légende, widget: string, required: false, i18n: true }
+          - { name: credit, label: Crédit, widget: string, required: false, i18n: duplicate, hint: 'Affiché sous la photo. Par exemple : © Anaël Antille' }
+      - { name: body, label: Texte, widget: markdown, i18n: true }
 
-  - name: news_de
-    label: Actualités (allemand)
-    label_singular: Actualité en allemand
-    folder: content/de/aktuelles
-    create: true
-    slug: '{{slug}}'
-    summary: '{{date}} · {{title}}'
-    thumbnail: image.src
-    sortable_fields: [date, title]
-    fields: *news_fields
-
-  - name: pages_fr
-    label: Pages (français)
+  - name: pages
+    label: Pages
+    i18n: true
     files:
       - name: index
         label: Accueil
-        file: content/fr/index.md
+        file: content/{{locale}}/index.md
+        i18n: true
         # The same as pageSchema in content.schemas.ts. The other pages use them too.
         fields: &page_fields
-          - { name: title, label: Titre, widget: string, hint: "Le titre de l'onglet du navigateur et de Google. Il n'est pas affiché dans la page." }
-          - { name: description, label: Description courte, widget: string, required: false, hint: Pour Google et les réseaux sociaux. }
-          - { name: body, label: Texte, widget: markdown, hint: 'Une vidéo YouTube dans le texte commence un bloc en deux colonnes : la vidéo à gauche, le texte qui suit à droite. Voir « Aide ».' }
-      - { name: tandem, label: Tandem, file: content/fr/tandem.md, fields: *page_fields }
-      - { name: durabilite, label: Durabilité, file: content/fr/durabilite.md, fields: *page_fields }
-
-  - name: pages_de
-    label: Pages (allemand)
-    files:
-      - { name: index, label: Startseite, file: content/de/index.md, fields: *page_fields }
-      - { name: tandem, label: Tandem, file: content/de/tandem.md, fields: *page_fields }
-      - { name: nachhaltigkeit, label: Nachhaltigkeit, file: content/de/nachhaltigkeit.md, fields: *page_fields }
+          - { name: title, label: Titre, widget: string, i18n: true, hint: "Le titre de l'onglet du navigateur et de Google. Il n'est pas affiché dans la page." }
+          - { name: description, label: Description courte, widget: string, required: false, i18n: true, hint: Pour Google et les réseaux sociaux. }
+          - { name: body, label: Texte, widget: markdown, i18n: true, hint: 'Une vidéo YouTube dans le texte commence un bloc en deux colonnes : la vidéo à gauche, le texte qui suit à droite. Voir « Aide ».' }
+      - { name: tandem, label: Tandem, file: 'content/{{locale}}/tandem.md', i18n: true, fields: *page_fields }
+      - { name: durabilite, label: Durabilité, file: 'content/{{locale}}/durabilite.md', i18n: true, fields: *page_fields }

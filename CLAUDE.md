@@ -35,9 +35,14 @@ A page is in French or in German, never the two. `<html lang>` and the
 | news list | `/fr/actualites` | `/de/aktuelles` |
 | news item | `/fr/actualites/<slug>` | `/de/aktuelles/<slug>` |
 
-- `app/utils/i18n.ts` has the menu (the path of each page in the two
+- `app/utils/i18n.ts` has the menu (the URL of each page in the two
   languages) and all the fixed texts of the interface. A new page goes in
   `menu`, with its label in `labels`.
+- The content files have the same name in the two languages, the French one:
+  `/de/nachhaltigkeit` is `content/de/durabilite.md`, and `/de/aktuelles/<slug>`
+  is `content/de/actualites/<slug>.md`. The CMS needs this to show the two
+  languages of a page in one entry. `contentPathOf` and `urlOfContent`
+  (`app/utils/i18n.ts`) go from a URL to a file and back.
 - `app/composables/useSiteNav.ts` makes the menu and the `Français / Deutsch`
   switch of the header. The switch goes to the same page in the other language.
 - `/` has no page. `public/_redirects` sends it to `/fr`, and the old URLs
@@ -45,7 +50,8 @@ A page is in French or in German, never the two. `<html lang>` and the
 
 ### Pages
 
-The text of a page is `content/<lang>/<page>.md`. One Vue page draws them all:
+The text of a page is `content/fr/<page>.md` and `content/de/<page>.md`. One
+Vue page draws them all:
 `app/pages/[lang]/[[slug]].vue`, with `app/components/PageBody.vue`.
 
 In the text, a `::youtube-lite{id="..." title="..."}` block starts a block with
@@ -55,23 +61,27 @@ full width again. This is how the tandem pages are made.
 
 ### News
 
-A news item is one Markdown file: `content/fr/actualites/<slug>.md` or
-`content/de/aktuelles/<slug>.md`. Fields: `title`, `date` (`YYYY-MM-DD`),
-`description`, `image` (`src`, `alt`, `caption`, `credit`), then the text.
+A news item is two Markdown files with the same name:
+`content/fr/actualites/<slug>.md` and `content/de/actualites/<slug>.md`.
+Fields: `title`, `date` (`YYYY-MM-DD`), `description`, `image` (`src`, `alt`,
+`caption`, `credit`), then the text. The date and the photo are the same in
+the two files, the CMS copies them.
 
-- A news item is written in one language. It only shows on the site of this
-  language. When the same slug exists in the two folders, the switch links the
-  two.
-- When a language has no news, its menu has no news link, and its list page
-  is `noindex`.
+- The menu has the news link in the two languages.
+- Benjamin can turn German off for one item in the CMS. Then there is no German
+  file: the item does not show on the German side, and the language switch of
+  the French article goes to the German list.
+- A list with no item is `noindex`.
 - `app/components/NewsList.vue` and `NewsArticle.vue` do the work. The pages in
   `app/pages/fr/actualites/` and `app/pages/de/aktuelles/` only give them the
   language.
 
 ### CMS
 
-`public/admin/config.yml` has 4 collections: the news and the pages, one time
-per language. `public/admin/site.js` adds the "Vidéo YouTube" button of the
+`public/admin/config.yml` has 2 collections: the news and the pages. They use
+the i18n of Sveltia: one entry shows the French text and the German text side
+by side, and saves one file per language (`content/{{locale}}/...`).
+`public/admin/site.js` adds the "Vidéo YouTube" button of the
 text editor. `public/admin/aide.html` is the help page for Benjamin, in French.
 Update it when the CMS changes.
 

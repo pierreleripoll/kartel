@@ -13,7 +13,7 @@
     >
       <NuxtLink
         v-if="item.image"
-        :to="item.path"
+        :to="urlOfContent(item.path)"
         class="news-item__image"
         tabindex="-1"
         aria-hidden="true"
@@ -29,7 +29,7 @@
           <time :datetime="item.date">{{ formatDate(item.date, lang) }}</time>
         </p>
         <h2>
-          <NuxtLink :to="item.path">
+          <NuxtLink :to="urlOfContent(item.path)">
             {{ item.title }}
           </NuxtLink>
         </h2>
@@ -49,7 +49,7 @@ const props = defineProps<{
 // Only the news written in this language. The last one comes first.
 const { data: news } = await useAsyncData(`news-${props.lang}`, () =>
   queryCollection('news')
-    .where('path', 'LIKE', `${newsPath(props.lang)}/%`)
+    .where('path', 'LIKE', `${contentPathOf(newsPath(props.lang))}/%`)
     .order('date', 'DESC')
     .select('path', 'title', 'date', 'description', 'image')
     .all(),
