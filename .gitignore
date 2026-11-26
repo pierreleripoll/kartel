@@ -1,9 +1,14 @@
 node_modules
-.output
 .nuxt
-.dist
+.output
+.data
+.wrangler
+.ipx-cache
 dist
-CLAUDE.md
+*.log
+.env
+.env.*
+.DS_Store
 
 # wtx: per-worktree files, local to one checkout
 .env.worktree

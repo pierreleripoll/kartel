@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Admin</title>
+    <!-- Absolute path on purpose: the page is served at /admin (no slash at the
+         end), so a relative "config.yml" would be looked for at the root. -->
+    <link href="/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+    <style>
+      /* Help button + side panel that loads aide.html. It sits over Sveltia,
+         nothing is plugged in the CMS. The bottom right corner is free on all
+         the Sveltia screens. */
+      #kit-aide-btn {
+        position: fixed; right: 18px; bottom: 18px; z-index: 2147483000;
+        width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer;
+        background: #1565c0; color: #fff; font: 700 19px/40px Georgia, "Times New Roman", serif;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+      }
+      #kit-aide-btn:hover { background: #0d47a1; }
+      #kit-aide-btn:focus-visible { outline: 3px solid #90caf9; outline-offset: 2px; }
+      #kit-aide {
+        z-index: 2147483001; margin: 0; padding: 0; border: 0;
+        inset: 0 0 0 auto; width: min(620px, 100vw); height: 100vh; max-height: 100vh; max-width: 100vw;
+        background: #f7f7f8; box-shadow: -4px 0 24px rgba(0, 0, 0, .25);
+        display: none; flex-direction: column;
+      }
+      #kit-aide[open] { display: flex; }
+      #kit-aide::backdrop { background: rgba(0, 0, 0, .35); }
+      #kit-aide header {
+        display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+        border-bottom: 1px solid #dcdce2; background: #fff;
+        font: 600 14px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #1c1c21;
+      }
+      #kit-aide header span { flex: 1; }
+      #kit-aide header a { font-weight: 400; color: #1565c0; font-size: 13px; }
+      #kit-aide header button {
+        border: 0; background: none; cursor: pointer; font-size: 22px; line-height: 1; color: #5f5f6b; padding: 2px 6px;
+      }
+      #kit-aide iframe { flex: 1; border: 0; width: 100%; }
+      @media (prefers-color-scheme: dark) {
+        #kit-aide { background: #1b1b1f; }
+        #kit-aide header { background: #242429; border-color: #3a3a42; color: #ececf1; }
+        #kit-aide header a { color: #7fb3f0; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sveltia CMS. The version is pinned here, for all the sites: change it
+         in site-kit, test on the template, and the sites get it at the next sync.
+         The config of the site is public/admin/config.yml. -->
+    <script src="https://unpkg.com/@sveltia/cms@0.262.4/dist/sveltia-cms.js"></script>
+    <!-- Code of the site for the CMS (custom fields, preview). Empty in the
+         template, a site writes its own in public/admin/site.js.
+         A plain script tag on purpose: field types must be registered before
+         the CMS reads the config. -->
+    <script src="/admin/site.js"></script>
+
+    <button id="kit-aide-btn" type="button" title="Aide : comment modifier le site" aria-label="Ouvrir l'aide">i</button>
+    <dialog id="kit-aide" aria-label="Aide de l'admin">
+      <header>
+        <span>Aide : comment modifier le site</span>
+        <a href="/admin/aide.html" target="_blank" rel="noopener">Ouvrir dans un onglet ↗</a>
+        <button type="button" id="kit-aide-close" aria-label="Fermer l'aide">×</button>
+      </header>
+      <!-- The src is set when the panel opens. Absolute path on purpose. -->
+      <iframe title="Aide" data-src="/admin/aide.html"></iframe>
+    </dialog>
+    <script>
+      (function () {
+        var dlg = document.getElementById('kit-aide');
+        var frame = dlg.querySelector('iframe');
+        document.getElementById('kit-aide-btn').addEventListener('click', function () {
+          if (!frame.src) frame.src = frame.getAttribute('data-src');
+          dlg.showModal();
+        });
+        document.getElementById('kit-aide-close').addEventListener('click', function () { dlg.close(); });
+        // Click on the dark background: close.
+        dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+      })();
+    </script>
+  </body>
+</html>
