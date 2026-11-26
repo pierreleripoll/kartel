@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Aide : comment modifier le site</title>
+    <style>
+      body {
+        margin: 0; padding: 20px 22px 60px; max-width: 640px;
+        font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        color: #1c1c21; background: #f7f7f8;
+      }
+      h1 { font-size: 22px; margin: 0 0 6px; }
+      p.intro { margin: 0 0 20px; color: #5f5f6b; }
+      details { background: #fff; border: 1px solid #dcdce2; border-radius: 8px; margin: 0 0 10px; padding: 0 14px; }
+      summary { cursor: pointer; font-weight: 600; padding: 12px 0; }
+      details[open] summary { border-bottom: 1px solid #ececf1; margin-bottom: 10px; }
+      details p, details ol, details ul { margin: 0 0 12px; }
+      code { font-family: ui-monospace, monospace; font-size: 0.9em; }
+      ol, ul { padding-left: 22px; }
+      @media (prefers-color-scheme: dark) {
+        body { background: #1b1b1f; color: #ececf1; }
+        p.intro { color: #a5a5b1; }
+        details { background: #242429; border-color: #3a3a42; }
+        details[open] summary { border-color: #3a3a42; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Page d'aide de Kartel. Les premiers blocs sont à Kartel, les suivants
+         viennent de la page de base de site-kit. Garder la forme : une
+         question par bloc <details>. -->
+    <h1>Comment modifier le site</h1>
+    <p class="intro">Les réponses aux questions les plus courantes. Cliquez sur une question pour l'ouvrir.</p>
+
+    <details open>
+      <summary>Publier une actualité</summary>
+      <ol>
+        <li>Dans la colonne de gauche, cliquez sur « Actualités (français) ».</li>
+        <li>Cliquez sur « Nouveau » en haut à droite.</li>
+        <li>Remplissez le titre, la date et le texte. La description courte est la phrase affichée dans la liste des actualités.</li>
+        <li>Pour la photo : ouvrez « Photo », choisissez le fichier, écrivez le texte de remplacement, et le crédit (par exemple « © Anaël Antille »). Le crédit est affiché sous la photo.</li>
+        <li>Cliquez sur « Enregistrer ».</li>
+      </ol>
+      <p>L'actualité est en ligne en 2 à 3 minutes. La plus récente est affichée en premier.</p>
+    </details>
+
+    <details>
+      <summary>Le français et l'allemand</summary>
+      <p>Le site existe en deux versions séparées. Chaque rubrique existe donc deux fois : une pour le français, une pour l'allemand.</p>
+      <ul>
+        <li>Quand vous changez un texte en français, la page allemande ne change pas. Pensez à la modifier aussi.</li>
+        <li>Une actualité écrite en français n'est affichée que sur le site français. Pour l'avoir aussi en allemand, créez-la une deuxième fois dans « Actualités (allemand) ».</li>
+        <li>Tant qu'il n'y a aucune actualité en allemand, le lien « Aktuelles » n'est pas dans le menu allemand.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Ajouter une vidéo YouTube dans une page</summary>
+      <ol>
+        <li>Dans le texte, placez le curseur à l'endroit voulu, sur une ligne vide.</li>
+        <li>Cliquez sur le bouton « + » de l'éditeur, puis « Vidéo YouTube ».</li>
+        <li>Collez l'adresse de la vidéo et donnez-lui un titre.</li>
+      </ol>
+      <p>La vidéo commence un bloc en deux colonnes : la vidéo à gauche, le texte qui suit à droite. Le bloc s'arrête à la vidéo suivante, ou à une ligne de séparation (le bouton « ligne horizontale », ou trois tirets <code>---</code> seuls sur une ligne). Après la séparation, le texte reprend toute la largeur.</p>
+    </details>
+
+    <details>
+      <summary>Ajouter un lien vers un PDF</summary>
+      <p>Les PDF déjà en ligne restent à leur adresse. Pour un nouveau PDF, envoyez-le à la personne qui s'occupe du site : elle le met en ligne et vous donne l'adresse à mettre dans le lien.</p>
+    </details>
+
+    <details>
+      <summary>Modifier un texte</summary>
+      <ol>
+        <li>Dans la colonne de gauche, choisissez la rubrique.</li>
+        <li>Cliquez sur la fiche à modifier.</li>
+        <li>Changez le texte, puis cliquez sur « Enregistrer » en haut à droite.</li>
+      </ol>
+      <p>Le site en ligne se met à jour tout seul, en 2 à 3 minutes.</p>
+    </details>
+
+    <details>
+      <summary>Ajouter ou changer une photo</summary>
+      <ol>
+        <li>Ouvrez la fiche, puis le champ de la photo.</li>
+        <li>Cliquez sur « Remplacer » ou « Ajouter », et choisissez le fichier sur votre ordinateur.</li>
+        <li>Enregistrez.</li>
+      </ol>
+      <p>Vous pouvez envoyer la photo telle qu'elle sort de l'appareil : elle est réduite à la bonne taille à l'envoi.</p>
+      <p>Pensez au texte de remplacement (« alt ») : une phrase qui décrit la photo pour les personnes qui ne la voient pas.</p>
+    </details>
+
+    <details>
+      <summary>Créer une nouvelle fiche</summary>
+      <ol>
+        <li>Choisissez la rubrique dans la colonne de gauche.</li>
+        <li>Cliquez sur « Nouveau » en haut à droite.</li>
+        <li>Remplissez les champs, puis enregistrez.</li>
+      </ol>
+    </details>
+
+    <details>
+      <summary>Supprimer une fiche</summary>
+      <p>Ouvrez la fiche, cliquez sur les trois points en haut à droite, puis « Supprimer ». La fiche disparaît du site en quelques minutes.</p>
+    </details>
+
+    <details>
+      <summary>J'ai fait une erreur, comment revenir en arrière ?</summary>
+      <p>Rien n'est perdu : chaque enregistrement est gardé dans l'historique du site. Écrivez à la personne qui s'occupe du site, avec le nom de la fiche et l'heure environ, elle peut remettre la version d'avant.</p>
+    </details>
+
+    <details>
+      <summary>Mon changement n'apparaît pas sur le site</summary>
+      <ul>
+        <li>Attendez 3 minutes, puis rechargez la page du site.</li>
+        <li>Vérifiez que vous avez bien cliqué sur « Enregistrer ».</li>
+        <li>Si rien ne change après 10 minutes, écrivez à la personne qui s'occupe du site.</li>
+      </ul>
+    </details>
+  </body>
+</html>

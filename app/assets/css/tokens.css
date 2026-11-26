@@ -1,0 +1,14 @@
+/* The colors, the font and the sizes of the site.
+   main.css and the components only use these names. */
+:root {
+  --color-bg: #000;
+  --color-text: #fff;
+  --color-hover: #ffced9;
+  --color-muted: rgb(255 255 255 / 0.7);
+
+  --font-body: "Violet Sans", Arial, sans-serif;
+
+  --page-width: 1200px;
+  --text-width: 46rem;
+  --gap: 3rem;
+}

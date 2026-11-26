@@ -1,0 +1,11 @@
+# Redirects of the Cloudflare worker (static assets). They apply before the files.
+# With no code at the end, Cloudflare sends a 302.
+
+# The site has no page at "/": French is the default language.
+/ /fr 302
+
+# The URLs of the old site, where each page had the two languages.
+/tandem /fr/tandem 301
+/tandem/ /fr/tandem 301
+/durabilite /fr/durabilite 301
+/durabilite/ /fr/durabilite 301

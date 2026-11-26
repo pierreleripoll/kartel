@@ -1,0 +1,84 @@
+# Builds the site and deploys it to Cloudflare Workers (static assets).
+# It runs on each push on main (a save in the CMS is a push).
+# On a pull request it only builds. In site-kit it only builds too: the
+# template has nothing to deploy.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  # For a site with an agenda (past and coming dates), rebuild each night:
+  # schedule:
+  #   - cron: '15 3 * * *'
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DEPLOY: ${{ github.event_name != 'pull_request' && github.repository != 'pierreleripoll/site-kit' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      # node_modules as the install left it. A content change does not touch
+      # the lockfile, so it finds this cache and skips the install.
+      - uses: actions/cache/restore@v4
+        id: modules
+        with:
+          path: node_modules
+          key: modules-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml', 'package.json', 'pnpm-workspace.yaml', '.nvmrc') }}
+
+      - if: steps.modules.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+
+      # Saved here and not at the end of the job: the build writes its own
+      # files in node_modules/.cache.
+      - if: steps.modules.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: node_modules
+          key: ${{ steps.modules.outputs.cache-primary-key }}
+
+      # Images made by IPX and image sizes. Without this, each deploy encodes
+      # all the images again.
+      - uses: actions/cache@v4
+        with:
+          path: |
+            .ipx-cache
+            node_modules/.cache/site-kit
+          key: images-${{ github.run_id }}
+          restore-keys: images-
+
+      - run: pnpm generate
+        env:
+          NUXT_TELEMETRY_DISABLED: 1
+
+      - name: Check the Cloudflare secrets
+        if: env.DEPLOY == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN or CLOUDFLARE_ACCOUNT_ID is missing in the secrets of the repo."
+            exit 1
+          fi
+
+      - name: Deploy
+        if: env.DEPLOY == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: pnpm exec wrangler deploy

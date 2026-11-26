@@ -1,22 +1,42 @@
 {
-  "name": "nuxt-app",
+  "name": "kartel",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@12.16.1",
+  "engines": {
+    "node": ">=22.5"
+  },
   "scripts": {
-    "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "generate": "nuxt generate && node scripts/check-build.mjs /fr \"/fr/tandem:youtube-lite\" /fr/durabilite /fr/actualites \"/fr/actualites/nuit-du-cirque:Anaël Antille\" /de /de/tandem /de/nachhaltigkeit /de/aktuelles",
+    "preview": "wrangler dev --port ${PREVIEW_PORT:-8787}",
+    "lint": "eslint .",
+    "typecheck": "nuxt typecheck",
+    "resize-images": "node scripts/resize-images.mjs",
     "postinstall": "nuxt prepare",
-    "deploy": "NUXT_APP_BASE_URL=/kartel/ nuxt generate && npx gh-pages --dotfiles -d .output/public"
+    "deploy": "pnpm generate && wrangler deploy"
   },
   "dependencies": {
-    "@nuxt/eslint": "^1.15.2",
-    "@nuxt/icon": "^2.2.1",
-    "@nuxt/image": "^2.0.0",
-    "eslint": "^10.2.0",
-    "nuxt": "^4.4.2",
-    "vue": "^3.5.32",
-    "vue-router": "^5.0.4"
+    "@nuxt/content": "^3.16.2",
+    "@nuxt/eslint": "^1.17.0",
+    "@nuxt/image": "^2.2.1",
+    "@nuxt/kit": "^4.6.4",
+    "@nuxtjs/robots": "^7.0.2",
+    "@nuxtjs/sitemap": "^9.1.0",
+    "nuxt": "^4.6.4",
+    "photoswipe": "^5.4.4",
+    "sharp": "^0.35.5",
+    "thumbhash": "^0.1.1",
+    "ufo": "^1.6.1",
+    "vue": "^3.5.45",
+    "vue-router": "^5.5.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "eslint": "^10.14.0",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.3.14",
+    "wrangler": "^4.160.0"
   }
 }

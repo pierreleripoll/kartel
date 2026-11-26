@@ -1,0 +1,12 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+  workerd: true
+  '@parcel/watcher': true
+  # Not needed: Nuxt Content uses node:sqlite (see nuxt.config.ts).
+  better-sqlite3: false
+
+minimumReleaseAgeExclude:
+  - miniflare@5.20261110.0-beta
+  - vue-router@5.5.0
+  - wrangler@4.160.0
