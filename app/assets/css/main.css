@@ -1,30 +1,89 @@
 @font-face {
   font-family: "Violet Sans";
-  src: url("/fonts/VioletSans-Regular.woff") format("woff"),
-    url("/fonts/VioletSans-Regular.woff2") format("woff2");
+  src: url("/fonts/VioletSans-Regular.woff2") format("woff2"),
+    url("/fonts/VioletSans-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
-
-html,
-body {
-  font-family: "VioletSans-Regular", Arial, sans-serif;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: large;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--color-text);
+  text-underline-offset: 2px;
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--color-hover);
+}
+
 p {
   margin-top: 0;
 }
 
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+h1,
+h2,
+h3 {
+  font-size: large;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-text);
+  margin: 30px 0;
+}
+
+/* The text that comes from a Markdown file (pages and news). */
+.prose p {
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.prose h2,
+.prose h3 {
+  margin: 0 0 10px;
+  padding-top: 1rem;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 20px;
+  margin: 0 0 20px;
+}
+
+.prose li {
+  line-height: 1.4;
+}
+
+/* The titles of a Markdown file have an anchor link around them. */
+.prose h2 a,
+.prose h3 a {
+  text-decoration: none;
 }

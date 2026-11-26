@@ -1,49 +1,87 @@
-<script setup lang="ts">
-import ListMarquee from "~/components/ListMarquee.vue";
-</script>
-
 <template>
   <div class="kartel-container">
     <div class="logo-container">
-      <a href="mailto:info@kartel.ch" target="_blank">
-        <img src="/Klogo.svg" alt="Kartel Logo" class="logo" />
+      <a href="mailto:info@kartel.ch">
+        <img
+          src="/Klogo.svg"
+          alt="Kartel"
+          class="logo"
+        >
       </a>
     </div>
 
-    <div class="nav-links">
-      <NuxtLink to="/" :class="{ active: $route.path === '/' }"
-        >Accueil / Startseite</NuxtLink
+    <div class="nav-wrapper">
+      <nav
+        class="lang-selector"
+        :aria-label="lang === 'fr' ? 'Langue' : 'Sprache'"
       >
-      <NuxtLink to="/tandem" :class="{ active: $route.path === '/tandem' }"
-        >Tandem</NuxtLink
+        <template
+          v-for="(item, index) in switches"
+          :key="item.lang"
+        >
+          <span v-if="index > 0">/</span>
+          <NuxtLink
+            :to="item.to"
+            :lang="item.lang"
+            :class="{ active: item.active }"
+          >
+            {{ item.label }}
+          </NuxtLink>
+        </template>
+      </nav>
+
+      <nav
+        class="nav-links"
+        aria-label="Menu"
       >
-      <NuxtLink
-        to="/durabilite"
-        :class="{ active: $route.path === '/durabilite' }"
-        >Durabilité / Nachhaltigkeit</NuxtLink
-      >
+        <NuxtLink
+          v-for="link in links"
+          :key="link.key"
+          :to="link.to"
+          :class="{ active: link.active }"
+        >
+          {{ link.label }}
+        </NuxtLink>
+      </nav>
     </div>
 
-    <hr class="divider" />
+    <hr class="divider">
 
-    <!-- Page content will be inserted here -->
-    <slot />
+    <main>
+      <slot />
+    </main>
 
-    <hr class="divider" />
+    <hr class="divider">
 
     <ListMarquee />
   </div>
 </template>
 
-<style>
+<script setup lang="ts">
+const { lang, links, switches } = await useSiteNav()
+const siteUrl = useSiteConfig().url
+
+useHead({
+  htmlAttrs: { lang },
+  // Tells Google that the page exists in the other language.
+  link: computed(() =>
+    switches.value
+      .filter(item => item.exact)
+      .map(item => ({
+        rel: 'alternate',
+        hreflang: item.lang,
+        href: siteUrl + item.to,
+      })),
+  ),
+})
+</script>
+
+<style scoped>
 .kartel-container {
-  max-width: 1200px;
+  max-width: var(--page-width);
+  min-height: 100vh;
   margin: 0 auto;
   padding: 20px;
-}
-
-h3 {
-  font-size: large;
 }
 
 .logo-container {
@@ -53,8 +91,28 @@ h3 {
 }
 
 .logo {
+  display: block;
   width: 30rem;
   height: auto;
+}
+
+.nav-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.lang-selector {
+  text-align: right;
+  font-size: 0.85em;
+}
+
+.lang-selector a {
+  padding: 0 2px;
+  text-decoration: none;
+}
+
+.lang-selector a.active {
+  text-decoration: underline;
 }
 
 .nav-links {
@@ -75,122 +133,14 @@ h3 {
   text-decoration: underline;
 }
 
-.divider {
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 1);
-  margin: 30px 0;
-}
-
-.intro-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 30px;
-}
-
-.content-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.intro-column p {
-  line-height: 1.4;
-  margin-bottom: 20px;
-}
-
-.divider {
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 1);
-  margin: 30px 0;
-}
-
-.language-selection {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin: 20px 0;
-}
-
-.detailed-content {
-  margin: 0 auto;
-}
-
-.content-column p {
-  line-height: 1.4;
-  margin-bottom: 10px;
-}
-
-.content-column h3 {
-  margin-bottom: 10px;
-}
-
-.content-column ul {
-  padding-left: 20px;
-}
-
-.content-column li {
-  line-height: 1.4;
-}
-
-.video-container {
-  order: 2;
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-  margin: 30px 0;
-  height: 315px;
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  aspect-ratio: initial;
-  border-radius: 4px;
-}
-
-.objectives-box h3 {
-  margin-top: 0;
-}
-
-.youtube-link {
-  text-align: center;
-  margin: 30px 0;
-}
-
-.content-section {
-  padding: 1rem 0px;
-}
-
-/* Mobile layout */
-@media (max-width: 768px) {
-  .intro-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .content-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .language-selection {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .language-link {
-    width: 150px;
-  }
-}
-
-/* Mobile layout */
 @media (max-width: 768px) {
   .logo {
     width: 10rem;
+  }
+
+  .lang-selector {
+    text-align: center;
+    margin-bottom: 1rem;
   }
 }
 </style>

@@ -1,0 +1,103 @@
+# Sveltia CMS config of the site. The admin page itself (and the Sveltia
+# version) is public/admin/index.html.
+# Keep the fields the same as content.schemas.ts.
+
+backend:
+  name: github
+  repo: pierreleripoll/kartel
+  branch: main
+  # The shared sveltia-cms-auth worker (GitHub login). The domain of the site
+  # must be in its ALLOWED_DOMAINS variable.
+  base_url: https://sveltia-cms-auth.pierreripoll13-d89.workers.dev
+
+site_url: https://kartel.ch
+
+media_folder: public/uploads
+public_folder: /uploads
+
+# An empty optional field is left out of the file. Without this, Sveltia saves
+# an empty text, or a photo with no file, and the build refuses it.
+output:
+  omit_empty_optional_fields: true
+
+# Photos are made smaller when they are uploaded, so a 14 MB file never goes in
+# the repo. File names are cleaned (no accents, no spaces).
+media_libraries:
+  default:
+    config:
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 2400
+          height: 2400
+        svg:
+          optimize: true
+
+# Width, height and thumbhash of the images are not fields: the build reads
+# them from the files.
+
+# The site has two languages, each one with its own files:
+# content/fr/ and content/de/. A news item is written in one language. To have
+# it in the two languages, write it one time in each collection.
+
+
+collections:
+  - name: news_fr
+    label: Actualités (français)
+    label_singular: Actualité
+    folder: content/fr/actualites
+    create: true
+    slug: '{{slug}}'
+    summary: '{{date}} · {{title}}'
+    thumbnail: image.src
+    sortable_fields: [date, title]
+    # The same as newsSchema in content.schemas.ts. The German news use them too.
+    fields: &news_fields
+      - { name: title, label: Titre, widget: string }
+      - { name: date, label: Date, widget: datetime, format: 'YYYY-MM-DD', time_format: false, picker_utc: false, hint: "Le jour de l'actualité. La plus récente est affichée en premier." }
+      - { name: description, label: Description courte, widget: string, required: false, hint: 'Une phrase, affichée dans la liste des actualités, sur Google et sur les réseaux sociaux.' }
+      - name: image
+        label: Photo
+        widget: object
+        required: false
+        collapsed: false
+        fields:
+          - { name: src, label: Fichier, widget: image, hint: "Un JPG ou un PNG. La photo est réduite à la bonne taille à l'envoi." }
+          - { name: alt, label: Texte de remplacement, widget: string, required: false, hint: Une phrase qui décrit la photo pour les personnes qui ne la voient pas. }
+          - { name: caption, label: Légende, widget: string, required: false }
+          - { name: credit, label: Crédit, widget: string, required: false, hint: 'Affiché sous la photo. Par exemple : © Anaël Antille' }
+      - { name: body, label: Texte, widget: markdown }
+
+  - name: news_de
+    label: Actualités (allemand)
+    label_singular: Actualité en allemand
+    folder: content/de/aktuelles
+    create: true
+    slug: '{{slug}}'
+    summary: '{{date}} · {{title}}'
+    thumbnail: image.src
+    sortable_fields: [date, title]
+    fields: *news_fields
+
+  - name: pages_fr
+    label: Pages (français)
+    files:
+      - name: index
+        label: Accueil
+        file: content/fr/index.md
+        # The same as pageSchema in content.schemas.ts. The other pages use them too.
+        fields: &page_fields
+          - { name: title, label: Titre, widget: string, hint: "Le titre de l'onglet du navigateur et de Google. Il n'est pas affiché dans la page." }
+          - { name: description, label: Description courte, widget: string, required: false, hint: Pour Google et les réseaux sociaux. }
+          - { name: body, label: Texte, widget: markdown, hint: 'Une vidéo YouTube dans le texte commence un bloc en deux colonnes : la vidéo à gauche, le texte qui suit à droite. Voir « Aide ».' }
+      - { name: tandem, label: Tandem, file: content/fr/tandem.md, fields: *page_fields }
+      - { name: durabilite, label: Durabilité, file: content/fr/durabilite.md, fields: *page_fields }
+
+  - name: pages_de
+    label: Pages (allemand)
+    files:
+      - { name: index, label: Startseite, file: content/de/index.md, fields: *page_fields }
+      - { name: tandem, label: Tandem, file: content/de/tandem.md, fields: *page_fields }
+      - { name: nachhaltigkeit, label: Nachhaltigkeit, file: content/de/nachhaltigkeit.md, fields: *page_fields }
