@@ -15,16 +15,17 @@ protected_branches = ["main"]
 name = "frontend"
 main = 3000   # what the main checkout keeps
 
-# Gitignored files a fresh worktree needs. Never overwritten.
-[seed]
-copy = ["CLAUDE.md"]
+# `pnpm preview` (wrangler dev) reads PREVIEW_PORT.
+[[ports.family]]
+name = "preview"
+main = 8787   # what the main checkout keeps
 
 [deps]
 
 [[deps.step]]
 if_missing = "node_modules"
 cwd = "."
-run = "npm ci"
+run = "pnpm install --frozen-lockfile"
 
 # The agent pane fills the left half, the rest stack on the right.
 [panes]
@@ -36,7 +37,7 @@ role = "agent"
 [[panes.pane]]
 name = "frontend"
 role = "server"
-cmd = "npm run dev"
+cmd = "pnpm dev"
 log = true   # mirrored to .wt-logs/, the agent reads it
 
 [[panes.pane]]
@@ -64,10 +65,11 @@ build_effort = "xhigh"
 
 # Added to the baseline wtx ships. A repo can tighten, never loosen.
 [permissions]
-allow = ["Bash(npm run build)", "Bash(npm run generate)", "Bash(npx eslint .)", "Bash(wtx curl *)"]
-deny = ["Bash(npm run deploy*)", "Bash(npx gh-pages*)"]
+allow = ["Bash(pnpm lint)", "Bash(pnpm typecheck)", "Bash(pnpm generate)", "Bash(wtx curl *)"]
+deny = ["Bash(pnpm run deploy*)", "Bash(pnpm deploy*)", "Bash(wrangler deploy*)", "Bash(pnpm wrangler deploy*)", "Bash(pnpm exec wrangler deploy*)", "Bash(npx wrangler deploy*)", "Bash(wrangler secret*)", "Bash(pnpm wrangler secret*)", "Bash(pnpm exec wrangler secret*)", "Bash(npx wrangler secret*)"]
+allowed_domains = ["registry.npmjs.org", "*.npmjs.org"]
 
 # Run by `wtx land --local` and by a local merge.
 [checks]
-lint = ["npx eslint ."]
-test = ["npm run generate"]
+lint = ["pnpm lint"]
+test = ["pnpm typecheck", "pnpm generate"]

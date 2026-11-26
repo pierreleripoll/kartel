@@ -1,59 +1,115 @@
-# Kartel Website
+# Kartel
 
-A Nuxt 3 recreation of the Kartel WordPress site. This site is for a cultural collective based in Switzerland.
+Site of Kartel, the collective of the professional associations of culture in
+Valais (Switzerland).
 
-## Setup
+Static Nuxt site, made from [site-kit](https://github.com/pierreleripoll/site-kit).
+The content is in Markdown in `content/`. Benjamin edits it in Sveltia CMS at
+`/admin`. The site is hosted on Cloudflare Workers.
 
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Commands
 
 ```bash
-# npm
-npm run dev
+pnpm install
+pnpm dev          # on port 3000
+pnpm generate     # build in .output/public, then check the pages
+pnpm preview      # serve the build with wrangler, like in production
+pnpm lint
+pnpm typecheck
 ```
 
-## Production
+You need Node 24 (`.nvmrc`) and pnpm.
 
-Build the application for production:
+## Languages
 
-```bash
-# npm
-npm run build
+The site has a French version and a German version. Each one has its own URLs,
+and no page mixes the two.
+
+| page | French | German |
+|---|---|---|
+| home | `/fr` | `/de` |
+| tandem | `/fr/tandem` | `/de/tandem` |
+| durabilité | `/fr/durabilite` | `/de/nachhaltigkeit` |
+| news | `/fr/actualites` | `/de/aktuelles` |
+
+- `/` redirects to `/fr`. The old URLs `/tandem` and `/durabilite` redirect to
+  the French pages. The redirects are in `public/_redirects`.
+- The `Français / Deutsch` switch of the header goes to the same page in the
+  other language.
+- The menu and the fixed texts of the interface are in `app/utils/i18n.ts`.
+
+## Content
+
+```text
+content/
+  fr/
+    index.md  tandem.md  durabilite.md
+    actualites/<slug>.md
+  de/
+    index.md  tandem.md  nachhaltigkeit.md
+    aktuelles/<slug>.md
 ```
 
-Generate static pages for GitHub Pages deployment:
+The fields of each file are in `content.schemas.ts`. The build fails when a
+file has a bad field.
 
-```bash
-# npm
-npm run generate
+### Pages
+
+A page has a `title`, a `description` and the text. In the text, a YouTube
+block starts a block with two columns, with the video on the left and the text
+after it on the right:
+
+```md
+::youtube-lite{id="TPsCd9tatRg" title="Tandem Presentation"}
+::
+
+### Comment ça se passe ?
+
+The text on the right of the video.
+
+---
+
+The text after the line takes the full width again.
 ```
 
-Preview the production build locally:
+### News
 
-```bash
-# npm
-npm run preview
-```
+A news item has a `title`, a `date`, a short `description`, a photo and the
+text. The photo has a `src`, an `alt`, a `caption` and a `credit`. The credit
+shows under the photo.
 
-## Deployment
+A news item is written in one language and only shows on the site of this
+language. To have it in the two languages, write it in the two folders with the
+same file name. When a language has no news, its menu has no news link.
 
-This site is configured to be deployed on GitHub Pages. Push to the main branch and the GitHub Actions workflow will handle the deployment automatically.
+## The CMS
 
-## Structure
+Benjamin logs in at `/admin` with his GitHub account. He needs the Write role
+on this repo. Each save is a commit on `main`, and the site is online 2 to 3
+minutes later.
 
-- `app.vue`: Main application template
-- `pages/index.vue`: Home page with content
-- `assets/`: Contains CSS, fonts, and image files
-- `public/`: Public files like favicon
+- `public/admin/config.yml`: the collections and the fields (news and pages,
+  one time per language). Keep the fields the same as `content.schemas.ts`.
+- `public/admin/site.js`: the "Vidéo YouTube" button of the text editor.
+- `public/admin/aide.html`: the help page of the CMS, in French.
 
-## Font Attribution
+The login goes through the shared `sveltia-cms-auth` worker. The domain of the
+site must be in its `ALLOWED_DOMAINS` variable.
 
-The site uses VioletSans-Regular font from the original WordPress site.
+## Deploy
+
+A push on `main` builds and deploys the site to the Cloudflare worker `kartel`
+(`.github/workflows/deploy.yml`). The workflow needs two secrets in the GitHub
+repo: `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN`.
+
+The URL of the site is written in two files: `site.url` in `nuxt.config.ts` and
+`site_url` in `public/admin/config.yml`.
+
+## The kit
+
+The images, the content checks, the admin page and the build rules come from
+site-kit. All the code is in this repo, and you can change every file. The
+list of the kit files and how they work: [docs/kit.md](docs/kit.md).
+
+`site-kit.json` has the site-kit commit of the last sync. To get the new
+changes of site-kit, follow `docs/sync-site.md` in site-kit.
